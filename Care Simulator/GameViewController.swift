@@ -10,12 +10,31 @@ import UIKit
 import SpriteKit
 import GameplayKit
 
+var tileWidth: CGFloat = 0
+var tileHeight: CGFloat = 0
+var pixelHeight: CGFloat = 0
+var pixelWidth: CGFloat = 0
+var displayHeight: CGFloat = 0
+var displayWidth: CGFloat = 0
+
 class GameViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if let view = self.view as! SKView? {
+            //figure out block size
+            let displaySize: CGRect = UIScreen.main.bounds
+
+            displayHeight = displaySize.height
+            displayWidth = displaySize.width
+
+            tileWidth = displayHeight / 12
+            tileHeight = tileWidth
+            
+            pixelHeight = tileHeight / 16
+            pixelWidth = tileWidth / 16
+            
             // Load the SKScene from 'GameScene.sks'
             if let scene = SKScene(fileNamed: "GameScene") {
                 // Set the scale mode to scale to fit the window
