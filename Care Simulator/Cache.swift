@@ -9,6 +9,6 @@
 import Foundation
 import SpriteKit
 
-class Cache{
+class Cache {
     
 }

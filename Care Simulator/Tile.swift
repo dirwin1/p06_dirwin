@@ -10,5 +10,6 @@ import Foundation
 import SpriteKit
 
 class Tile {
-    
+    var collidable : Bool = false
+    var sprite: SKSpriteNode! = nil
 }
