@@ -16,6 +16,13 @@ class GameScene: SKScene {
     
     override init(size: CGSize){
         super.init(size: size)
+        
+        anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        
+        let background = SKSpriteNode(imageNamed: "background")
+        background.texture?.filteringMode = .nearest
+        background.size = CGSize(width: tileWidth * 16, height: tileHeight * 10)
+        addChild(background)
     }
     
     required init?(coder aDecoder: NSCoder) {
