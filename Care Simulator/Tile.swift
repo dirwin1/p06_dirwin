@@ -10,6 +10,19 @@ import Foundation
 import SpriteKit
 
 class Tile {
-    var collidable : Bool = false
+    var type: Int = 0
+    var texture: SKTexture! = nil
     var sprite: SKSpriteNode! = nil
+    
+    init(type: Int){
+        self.type = type
+    }
+    
+    
+    //format:   7   0   1
+    //          6       2
+    //          5   4   3
+    func updateTexture(n: [Int]){
+    
+    }
 }
