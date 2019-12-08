@@ -13,7 +13,7 @@ class Guy : SKSpriteNode {
     var idleFrames: [SKTexture] = []
     var runFrames: [SKTexture] = []
     
-    var movementSpeed: Int = 10
+    var movementSpeed: CGFloat = 5
     var moving: Bool = false
     
     init(){
@@ -55,13 +55,13 @@ class Guy : SKSpriteNode {
             run(SKAction.repeatForever(SKAction.animate(with: runFrames, timePerFrame: 0.08)), withKey: "walk")
         }
         
-        if dx > 0 {
+        if dx < 0 {
             xScale = -1
         }
         else{
             xScale = 1
         }
         
-        physicsBody?.velocity = CGVector(dx: -dx, dy: -dy)
+        physicsBody?.velocity = CGVector(dx: dx * movementSpeed, dy: dy * movementSpeed)
     }
 }

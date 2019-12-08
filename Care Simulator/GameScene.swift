@@ -27,7 +27,7 @@ class GameScene: SKScene {
         let background = SKSpriteNode(imageNamed: "background")
         background.texture?.filteringMode = .nearest
         background.size = CGSize(width: tileWidth * 16, height: tileHeight * 10)
-        addChild(background)
+        //addChild(background)
         
         guy = Guy()
         guy.zPosition = 100
@@ -52,6 +52,9 @@ class GameScene: SKScene {
         innerJS.position = CGPoint.zero
         innerJS.zPosition = 1001
         cam.addChild(innerJS)
+        
+        let level = Level()
+        addChild(level)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -72,17 +75,16 @@ class GameScene: SKScene {
         
         //show the joystick
         outerJS.position = touchLocation
-        outerJS.alpha = 1
+        outerJS.alpha = 0.6
         
         innerJS.position = touchLocation
-        innerJS.alpha = 1
+        innerJS.alpha = 0.75
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch: AnyObject! = touches.first
         let touchLocation = touch.location(in: cam)
         
-        guy.move(dx: lastTouch.x - touchLocation.x, dy: lastTouch.y - touchLocation.y)
         cam.position = guy.position
         
         //update the joystick
@@ -94,6 +96,8 @@ class GameScene: SKScene {
             offset = CGPoint(x: (offset.x / length) * tileWidth, y: (offset.y / length) * tileHeight)
         }
         innerJS.position = CGPoint(x: lastTouch.x + offset.x, y: lastTouch.y + offset.y)
+        
+        guy.move(dx: offset.x, dy: offset.y)
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
