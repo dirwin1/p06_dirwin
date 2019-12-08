@@ -31,7 +31,7 @@ class Guy : SKSpriteNode {
         
         super.init(texture: idleFrames[0], color: UIColor.white, size: CGSize(width: tileWidth * 2, height: tileHeight * 2))
         
-        run(SKAction.repeatForever(SKAction.animate(with: idleFrames, timePerFrame: 0.08)))
+        run(SKAction.repeatForever(SKAction.animate(with: idleFrames, timePerFrame: 0.08)), withKey: "idle")
         
         physicsBody = SKPhysicsBody(texture: idleFrames[0], size:  CGSize(width: tileWidth * 2, height: tileHeight * 2))
         physicsBody?.affectedByGravity = false
@@ -46,13 +46,13 @@ class Guy : SKSpriteNode {
             //idle anim
             moving = false
             removeAllActions()
-            run(SKAction.repeatForever(SKAction.animate(with: idleFrames, timePerFrame: 0.08)))
+            run(SKAction.repeatForever(SKAction.animate(with: idleFrames, timePerFrame: 0.08)), withKey: "idle")
         }
         else if moving == false{
             //run anim
             moving = true
             removeAllActions()
-            run(SKAction.repeatForever(SKAction.animate(with: runFrames, timePerFrame: 0.08)))
+            run(SKAction.repeatForever(SKAction.animate(with: runFrames, timePerFrame: 0.08)), withKey: "walk")
         }
         
         if dx > 0 {
@@ -62,6 +62,6 @@ class Guy : SKSpriteNode {
             xScale = 1
         }
         
-        physicsBody?.velocity = CGVector(dx: -dx, dy: dy)
+        physicsBody?.velocity = CGVector(dx: -dx, dy: -dy)
     }
 }
