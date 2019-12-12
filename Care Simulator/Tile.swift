@@ -12,6 +12,7 @@ import SpriteKit
 class Tile : SKSpriteNode {
     var type: Int = 0
     var sprite: SKSpriteNode! = nil
+    var decor: SKSpriteNode! = nil
     
     init(type: Int){
         self.type = type
@@ -25,6 +26,11 @@ class Tile : SKSpriteNode {
         tex.filteringMode = .nearest
         
         super.init(texture: tex, color: UIColor.white, size: CGSize(width: tileWidth, height: tileHeight))
+        
+        decor = SKSpriteNode(imageNamed: "decor-2")
+        decor.texture?.filteringMode = .nearest
+        decor.size = CGSize(width: tileWidth, height: tileHeight)
+        addChild(decor)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -46,11 +52,31 @@ class Tile : SKSpriteNode {
             let tex = SKTexture(imageNamed: "tile-\(index)")
             tex.filteringMode = .nearest
             texture = tex
+            
+            //decor
+            let rand: Int = Int.random(in: 0...100)
+            if rand < 25 {
+                decor = SKSpriteNode(imageNamed: "decor-1")
+                decor.texture!.filteringMode = .nearest
+            }
+            else{
+                decor.alpha = 0
+            }
         }
         else{
             let tex = SKTexture(imageNamed: "tile-floor")
             tex.filteringMode = .nearest
             texture = tex
+            
+            //decor
+            let rand: Int = Int.random(in: 0...100)
+            if rand < 25 {
+                decor = SKSpriteNode(imageNamed: "decor-1")
+                decor.texture!.filteringMode = .nearest
+            }
+            else{
+                decor.alpha = 0
+            }
         }
     }
     
